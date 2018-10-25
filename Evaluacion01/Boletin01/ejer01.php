@@ -1,4 +1,5 @@
 <?php
+//modificación
 /*
  Ejercicio1._En este ejercicio vamos a configurar nuestro espacio de trabajo para trabajar 
 desde el lápiz de memoria.

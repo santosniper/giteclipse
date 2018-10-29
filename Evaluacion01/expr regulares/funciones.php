@@ -1,11 +1,5 @@
 <?php
-/*
-Ejercicio 1
-Crea una función que compruebe si la cadena recibida corresponde
- con un código postal válido en España (sólo comprobar que son 5 números).
-  La función devolverá verdadero o falso.
 
- */
 
 function cp_Esp(string $numero){
     return preg_match("/^[0-9]{5}$/", $numero);
@@ -13,9 +7,24 @@ function cp_Esp(string $numero){
 }
 
 
+function tlf_Esp(string $tlf){
+ 
 
-if(cp_Esp("111211")==true){
-    echo "Es un Código Postal Español";
-}else{
-    echo "No es un Código postal Español";
+    return preg_match("/^\+34[0-9]{9}$/", sinGuiones(sinEspacios($tlf)));
 }
+
+function calles(String $calle){
+    return preg_match("/^calle|avenida|paseo/i", $calle);
+}
+function user(String $us){
+    return  preg_match("/^[a-z|A-Z][\w_]{7,23}[a-zA-Z0-9]$/", $us) ;
+   
+    
+}
+function email($mail) {
+    return preg_match("/^[a-zA-Z]\w.+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/", $mail);
+}
+
+
+
+

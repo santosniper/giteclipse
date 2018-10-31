@@ -16,7 +16,9 @@ if (! isset($_REQUEST['bAceptar'])) {
 		<option value="f04">Función04</option>
 		<option value="f05">Función05</option>
 	</select>
-	  
+	<br>
+	<input TYPE="file">
+	  <br>
 	<input TYPE="submit" name="bAceptar" VALUE="aceptar">
 </form>
 </body>

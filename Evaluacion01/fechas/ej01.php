@@ -4,34 +4,25 @@
 compruebe si la fecha es correcta y nos devuelva la fecha en formato UNIX.
  */
 
-/*
- function func01($date, $format = 'd-m-Y')
-{
-    $d = DateTime::createFromFormat($format, $date);
+
+function func01($fecha) {
+    $mes=$fecha[3].$fecha[4];
+    $dia=$fecha[0].$fecha[1];
+    $año=$fecha[6].$fecha[7].$fecha[8].$fecha[9];
+    $compr=checkdate($mes, $dia, $año);
+    if($compr==false){
+        echo "fecha incorrecta<br>".$fecha;
+    }else{
+        echo date("d-m-Y",mktime(0,0,0,$mes,$dia,$año));
+        echo  "Fecha en UNIX:<br>".mktime(0,0,0,$mes,$dia,$año);
+        
+       
+    }
    
-    return $d && $d->format($format) === $date;
+
 }
-if(func01('21-11-2018')==true){
-    echo "correcto";
-}else{
-    echo "Formato (dd-mm-YYYY)";
-}
- */
 
-
-
- function func01($fecha) {
-     $fecha2=$fecha;
-     $fecha_con_formato = date('d-m-Y',$fecha2);
-     return $fecha_con_formato;
-     
- }
- 
- if(func01('21-11-2018')==true){
-     echo "correcto";
- }else{
-     echo "Formato (dd-mm-YYYY)";
- }
+func01("09-13-1988");
 
  
  

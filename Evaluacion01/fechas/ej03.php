@@ -6,7 +6,8 @@ devuelva la fecha en formato dd-mm-aaaa y aaaa-mm-dd según un segundo
  */
 
 
-function func01($fecha,$formato) {
+
+function func03($fecha,$formato=1) {
     $f1="d-m-Y";
     $f2="Y-m-d";
     if($formato==1){
@@ -29,4 +30,4 @@ function func01($fecha,$formato) {
     
 }
 
-func01("595033200",3);
+//func03("595033200",3);

@@ -13,7 +13,8 @@ function mostrarArrayMultidimensional($matriz){
             echo "<br>";
             mostrarArrayMultidimensional($value);
         }else{
-            echo $key.': '.$value;echo "<br>";
+            echo $key.':'.$value;
+            echo "<br>";
         }
     }
 }

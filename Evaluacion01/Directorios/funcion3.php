@@ -10,22 +10,43 @@ include 'funcion4.php';
  */
 
 function devuelveDirSubdir2($ruta) {
-    $directorio = opendir($ruta);
+ 
+   
     $arrayDirect = array();
+    if(is_dir($ruta)){
+        if( $directorio = opendir($ruta)){
     
     while(($archivo = readdir($directorio))!=false){
         if(is_file($ruta."/".$archivo)){
             $arrayDirect[]=$ruta."/".$archivo;
         }
-        if(is_dir($ruta."/".$archivo)&&$archivo!="."&&$archivo!=".."){
+        if(is_dir($ruta."/".$archivo) && $archivo!="." && $archivo!=".."){
             $arrayDirect[$archivo]=devuelveDirSubdir2(($ruta."/".$archivo));
         }
     }
-    closedir($directorio);
-    return $arrayDirect;
+        }
+        closedir($directorio);
+       
+    }else
+        $arrayDirect[]="<br>No es una ruta valida";
+        return $arrayDirect;
+    
+    
+}
+function mostrarArrayMultidimensional($matriz){
+    foreach($matriz as $key => $value){
+        if(is_array($value)){
+            echo 'key:'.$key;
+            echo "<br>";
+            mostrarArrayMultidimensional($value);
+        }else{
+            echo $key.':'.$value;
+            echo "<br>";
+        }
+    }
 }
 
-devuelveDirSubdir2("hola");
-//mostrarArrayMultidimensional($array);
+$array=devuelveDirSubdir2("hola");
+mostrarArrayMultidimensional($array);
 
 

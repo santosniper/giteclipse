@@ -1,5 +1,5 @@
 <?php
-include 'funcion4.php';
+
 /*
  Función que recorre directorio y subdirectorios.
  Realiza una función devuelveDirSubdir que recorre
@@ -10,43 +10,34 @@ include 'funcion4.php';
  */
 
 function devuelveDirSubdir2($ruta) {
- 
-   
-    $arrayDirect = array();
-    if(is_dir($ruta)){
-        if( $directorio = opendir($ruta)){
-    
-    while(($archivo = readdir($directorio))!=false){
-        if(is_file($ruta."/".$archivo)){
-            $arrayDirect[]=$ruta."/".$archivo;
+    $array=array();
+    if (is_dir($ruta)) {
+        if ($dh = opendir($ruta)) {
+            while (($file = readdir($dh)) != false) {
+                if(is_file($ruta . "/" . $file)){
+                    $array[]=$ruta . "/" . $file;
+                }
+                if (is_dir($ruta . "/" . $file) && $file!="." && $file!=".."){
+                    $array[$file]=devuelveDirSubdir2($ruta . "/" . $file);
+                }
+            }
         }
-        if(is_dir($ruta."/".$archivo) && $archivo!="." && $archivo!=".."){
-            $arrayDirect[$archivo]=devuelveDirSubdir2(($ruta."/".$archivo));
-        }
-    }
-        }
-        closedir($directorio);
-       
+        closedir($dh);
     }else
-        $arrayDirect[]="<br>No es una ruta valida";
-        return $arrayDirect;
-    
-    
+        $array[]="<br>No es ruta valida";
+        return $array;
 }
 function mostrarArrayMultidimensional($matriz){
-    foreach($matriz as $key => $value){
-        if(is_array($value)){
-            echo 'key:'.$key;
-            echo "<br>";
+    foreach($matriz as $key=>$value){
+        if (is_array($value)){
+            echo 'key:'. $key;
+            echo '<br>';
             mostrarArrayMultidimensional($value);
         }else{
-            echo $key.':'.$value;
-            echo "<br>";
+            echo $key.': '.$value ;
+            echo '<br>';
         }
     }
 }
-
 $array=devuelveDirSubdir2("hola");
 mostrarArrayMultidimensional($array);
-
-

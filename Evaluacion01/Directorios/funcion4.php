@@ -1,17 +1,20 @@
 <?php
+include 'funcion3.php';
 /*
 Ejercicio Función recorrido Array Multidimensional.
 Realiza una función que muestre el contenido de un 
 array multidimensional.
  */
 
-function arrayMultidimensional($array) {
-    foreach ($array as $item => $value){
-        echo $item.":".$value."";
+function mostrarArrayMultidimensional($matriz){
+    foreach($matriz as $key => $value){
+        if(is_array($value)){
+            echo 'key:'.$key;
+            echo "<br>";
+            mostrarArrayMultidimensional($value);
+        }else{
+            echo $key.': '.$value;echo "<br>";
+        }
+    }
 }
-}
 
-
-$values =[array ("fecha" => "10/08/2011", "estadocivil" => "soltero", "nombre" => "francisco"),array ("fecha" => "10/08/2011", "estadocivil" => "soltero", "nombre" => "francisco")]; 
-
-arrayMultidimensional($values);

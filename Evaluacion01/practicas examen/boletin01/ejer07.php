@@ -7,12 +7,12 @@ del número que contenga una variable $numero (recuerda que no tenemos entrada d
 En la primera columna mostraremos, por ejemplo 2x3 y en 
 la celda correspondiente de la segunda columna el resultado.
  */
-$cont=rand(1,9);
+$cont=rand(1,11);
 echo "<table border=3px>";
 
     
     
-    for($i=0;$i<=10;$i++){
+    for($i=1;$i<=10;$i++){
         echo "<tr>";
         echo "<td>".$cont."x".$i."</td>",
         "<td>".$cont*$i."</td>";

@@ -1,0 +1,8 @@
+SQLSTATE[HY000] [1049] Unknown database 'curso_phplogin'0.94706100 1544635761
+SQLSTATE[HY000] [1049] Unknown database 'curso_phplogin'0.07625700 1544635808
+SQLSTATE[HY000] [1049] Unknown database 'curso_phplogin'0.81409000 1544635808
+SQLSTATE[HY000] [1049] Unknown database 'curso_phplogin'0.98952400 1544635808
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'login.empleados' doesn't exist0.48865200 1544635943
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'login.empleados' doesn't exist0.62549400 1544635943
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'login.empleados' doesn't exist0.36191800 1544635944
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'login.empleados' doesn't exist0.82642000 1544635945

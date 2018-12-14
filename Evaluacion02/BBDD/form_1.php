@@ -13,8 +13,8 @@ echo "<b>Registrado:</b><br>";
 
 
 
-$errores="";/*
-try {*/
+$errores="";
+
     
     $db = modelo::GetInstance();
     $parametros = array(":nom" => $name, ":puesto" => $puesto, ":fnac" => $fnac, ":sal" => $salario, ":loc" => $localidad,);
@@ -30,4 +30,3 @@ try {*/
     print_r($resultado);
     
     
-  

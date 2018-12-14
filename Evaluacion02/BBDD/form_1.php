@@ -31,19 +31,3 @@ try {*/
     
     
   
-    /*
-} catch (PDOException $e) {
-    
-    // Usar error_log para guardar errores para el administrador
-    // Para realizar esta acción sería conveniente crear una clase para manejar el archivo log
-    error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logdb.txt");
-    
-    $errores = "Ha sucedido un error en la consulta";
-} catch (Error $e) {
-    
-    error_log($e->getMessage().microtime().PHP_EOL,3,"logerr.txt");
-    $errores="Excepción error capturada <br>";
-    
-}
-echo $errores;
-?>*/

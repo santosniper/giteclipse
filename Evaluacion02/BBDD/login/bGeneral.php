@@ -23,6 +23,11 @@ function pie(){
 	</html>";
 }
 
+function correo($mail){
+    $matches = null;
+    return (true == preg_match('/^[A-z0-9\\._-]+@[A-z0-9][A-z0-9-]*(\\.[A-z0-9_-]+)*\\.([A-z]{2,6})$/', $mail, $matches));
+}
+
 function sinTildes($frase) {
 
 	$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","à","è","ì","ò","ù","À","È","Ì","Ò","Ù");
@@ -37,9 +42,14 @@ function sinEspacios($frase) {
 }
 
 function pwd($pwd){
+    if(preg_match("/^[0-9A-Za-z]{8,12}$/", $pwd))
+    
+   return 1;
+    else
+        return 0;
+    
  
-   preg_match("/^[0-9A-Za-z]{8,12}$/", $pwd);
-    return $pwd;
+    
     
 }
 

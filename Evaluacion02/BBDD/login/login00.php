@@ -26,6 +26,7 @@ if (! isset($_REQUEST['bAceptar'])) {
 Nombre:<input type="text" name="nombre" size="10"><br>
 Correo:<input type="text" name="mail" size="10"><br>
 Contraseña:<input type="text" name="pwd" size="10"><br>
+Repite la contraseña:<input type="text" name="pwd2" size="10"><br>
 
 <input type="submit" value="Enviar" name="bAceptar">
 </form>
@@ -37,17 +38,46 @@ else {
     $name=recoge('nombre');
     $mail=recoge('mail');
     $pwd=recoge('pwd');
+    $pwd2=recoge('pwd2');
     
-    if ($name== 0) {
+    if (cTexto($name)== 0) {
         $error = true;
+        echo 'Nombre no válido<br>';
+      
+       
     }
-    if ($mail == 0) {
+    if (correo($mail) == 0) {
         $error = true;
+        echo 'correo erróneo<br>';
+        
+       
+    }
+    
+    if($pwd==$pwd2){
+        if (pwd($pwd) == 0){
+            {
+                $error = true;
+                echo 'Contraseña no válida, de 8 a 12 dígitos y alfanumérica.(La "Ñ" no es válida")<br>';
+                
+        }
+            
+            
+        }
+    }
+    
+    if ($pwd!=$pwd2) {
+        
+        echo 'Las contraseñas no coinciden<br>';
+        $error = true;
+        
+        
+        
     }
   
-    if ($pwd == 0) {
-        $error = true;
-    }
+
+    
+
+    
   
     if (! $error) {
         header("location:form_1.php?nombre=$name&mail=$mail&pwd=$pwd");
@@ -56,10 +86,12 @@ else {
         ?>
 <form ACTION="<?=$_SERVER ['PHP_SELF'] //el archivo actual?>"
 	METHOD='post'>
-	<p>Los datos que has introducido no están en el formato correcto</p>
-	NOMBRE:<input type="text" name="nombre" size="10"><br>
+	
+	Nombre:<input type="text" name="nombre" size="10"><br>
 Correo:<input type="text" name="mail" size="10"><br>
 Contraseña:<input type="text" name="pwd" size="10"><br>
+Repite la contraseña:<input type="text" name="pwd2" size="10"><br>
+
 		<?php
         echo '<input TYPE="submit" name="bAceptar" VALUE="aceptar">';
     }

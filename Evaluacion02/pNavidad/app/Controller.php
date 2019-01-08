@@ -25,6 +25,50 @@ class Controller
 
 		require __DIR__ . '/templates/mostrarUsuarios.php';
 	}
+	
+	public function enviar()
+	{
+	    $params = array(
+	        'para' => '',
+	        'asunto' => '',
+	        'de' => '',
+	        'cuerpo' => '',
+	    );
+	    
+	    $m = new Model();
+	    
+	    if (isset ($_POST['enviar'])) {
+	        $para=recoge('para');
+	        $asunto=recoge('asunto');
+	        $de=recoge('de');
+	        $cuerpo=recoge('cuerpo');
+	        // comprobar campos formulario
+	        if (validarDatos($para, $asunto,$de, $cuerpo)) {
+	            if ($m->insertarMensaje(recoge('para'), recoge('asunto'), recoge('de'), recoge('cuerpo'))){
+	                header('Location: index.php?ctl=enviar');
+	            }else {
+	                $params = array(
+	                    'para' => $para,
+	                    'asunto' => $asunto,
+	                    'de' => $de,
+	                    'cuerpo' => $cuerpo,
+	                );
+	                $params['mensaje'] = 'No se ha podido insertar el usuario. Revisa el formulario';
+	            }
+	        } else {
+	            $params = array(
+	                
+	                'para' => $para,
+	                'asunto' => $asunto,
+	                'de' => $de,
+	                'cuerpo' => $cuerpo,
+	            );
+	            $params['mensaje'] = 'Hay datos que no son correctos. Revisa el formulario';
+	        }
+	    }
+	    
+	    require __DIR__ . '/templates/enviarMensaje.php';
+	}
 
 	public function insertar()
 	{

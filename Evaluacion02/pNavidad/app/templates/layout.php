@@ -15,7 +15,8 @@
 <hr/>
 <a href="index.php?ctl=inicio">Inicio</a> |
 <a href="index.php?ctl=listar">Usuarios</a> |
-<a href="index.php?ctl=insertar">insertar usuario</a>
+<a href="index.php?ctl=insertar">insertar usuario</a>|
+<a href="index.php?ctl=enviar">enviar mensaje</a>|
 
 <hr/>
 </div>

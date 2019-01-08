@@ -98,6 +98,19 @@ class Model extends PDO
                 
         return $result;
     }
+    
+    public function insertarMensaje($para, $asunto, $de, $cuerpo)
+    {
+        $consulta = "insert into mensajes (Id_emisor,Id_receptor,asunto,mensaje ) values (?, ?, ?, ?)";
+        $result = $this->conexion->prepare($consulta);
+        $result->bindParam(1, $para);
+        $result->bindParam(2, $asunto);
+        $result->bindParam(3, $de);
+        $result->bindParam(4, $cuerpo);
+        $result->execute();
+        
+        return $result;
+    }
 
     
 }

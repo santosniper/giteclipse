@@ -12,6 +12,7 @@ $map = array(
 'inicio' => array('controller' =>'Controller', 'action' =>'inicio'),
 'listar' => array('controller' =>'Controller', 'action' =>'listar'),
 'insertar' => array('controller' =>'Controller', 'action' =>'insertar'),
+'enviar' => array('controller' =>'Controller', 'action' =>'enviar'),
 'buscar' => array('controller' =>'Controller', 'action' =>'buscarPorNombre'),
 'buscarAlimentosPorEnergia' => array('controller' =>'Controller', 'action' =>'buscarPorEnergia'),
 'ver' => array('controller' =>'Controller', 'action' =>'ver')

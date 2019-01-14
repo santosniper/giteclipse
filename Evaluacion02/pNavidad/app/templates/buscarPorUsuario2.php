@@ -1,10 +1,10 @@
 <?php ob_start() ?>
 
-<form name="formBusqueda" action="index.php?ctl=buscarPorUsuario" method="POST">
+<form name="formBusqueda" action="index.php?ctl=buscarPorUsuario2" method="POST">
 
 <table>
 <tr>
-<td>Emisors:</td>
+<td> Receptor:</td>
 <td><input type="text" name="usuario" value="<?php echo $params['usuario']?>">(puedes utilizar '%' como comodín)</td>
 
 <td><input type="submit" value="buscar"></td>

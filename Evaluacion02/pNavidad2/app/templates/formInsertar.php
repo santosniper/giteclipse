@@ -16,7 +16,7 @@
 <td><input type="text" name="nick" value="<?php echo $params['nick'] ?>" /></td>
 <td><input type="text" name="nombre" value="<?php echo $params['nombre'] ?>" /></td>
 <td><input type="text" name="correo" value="<?php echo $params['correo'] ?>" /></td>
-<td><input type="text" name="contraseña" value="<?php echo $params['contraseña'] ?>" /></td>
+<td><input type="text" name="contrasena" value="<?php echo $params['contrasena'] ?>" /></td>
 </tr>
 
 </table>

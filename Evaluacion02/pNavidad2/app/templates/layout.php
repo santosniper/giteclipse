@@ -16,10 +16,12 @@
 <a href="index.php?ctl=inicio">Inicio</a> |
 <a href="index.php?ctl=listar">Usuarios</a> |
 <a href="index.php?ctl=listarM">Mensajes</a>|
+<a href="index.php?ctl=login">Login</a>|
 <a href="index.php?ctl=insertar">insertar usuario</a>|
 <a href="index.php?ctl=enviar">enviar mensaje</a>|
 <a href="index.php?ctl=buscarPorUsuario">buscar mensaje por emisor</a>|
 <a href="index.php?ctl=buscarPorUsuario2">buscar mensaje por receptor</a>|
+<a href="index.php?ctl=exit">exit</a>|
 
 
 <hr/>

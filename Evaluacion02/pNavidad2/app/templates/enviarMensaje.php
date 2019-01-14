@@ -14,13 +14,13 @@
 <tr>
 <th>Asunto</th>
 <td><input type="text" name="asunto" value="<?php echo $params['asunto'] ?>" /></td>
-<th>De</th>
-<td><input type="text" name="de" value="<?php echo $params['de'] ?>" /></td>
 </tr>
 
-
-
-<td colspan="4"><textarea name="cuerpo" rows="33" cols="33" value="<?php echo $params['cuerpo'] ?>" ></textarea></td>
+<tr>
+<th>Cuerpo</th>
+</tr>
+<tr>
+<td colspan="2"><textarea name="cuerpo" rows="15" cols="33" value="<?php echo $params['cuerpo'] ?>" ></textarea></td>
 </tr>
 
 </table>

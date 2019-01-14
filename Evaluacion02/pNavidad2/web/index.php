@@ -1,4 +1,5 @@
-<?php
+    <?php
+session_start();
 // web/index.php
 
 // carga del modelo y los controladores
@@ -11,10 +12,16 @@ require_once __DIR__ . '/../app/Controller.php';
 $map = array(
 'inicio' => array('controller' =>'Controller', 'action' =>'inicio'),
 'listar' => array('controller' =>'Controller', 'action' =>'listar'),
+'listarM' => array('controller' =>'Controller', 'action' =>'listarM'),
+'login' => array('controller' => 'controller', 'action' =>'login'),
 'insertar' => array('controller' =>'Controller', 'action' =>'insertar'),
+'enviar' => array('controller' =>'Controller', 'action' =>'enviar'),
 'buscar' => array('controller' =>'Controller', 'action' =>'buscarPorNombre'),
-'buscarAlimentosPorEnergia' => array('controller' =>'Controller', 'action' =>'buscarPorEnergia'),
-'ver' => array('controller' =>'Controller', 'action' =>'ver')
+'buscarPorUsuario' => array('controller' =>'Controller', 'action' =>'buscarPorUsuario'),
+'buscarPorUsuario2' => array('controller' =>'Controller', 'action' =>'buscarPorUsuario2'),
+'ver' => array('controller' =>'Controller', 'action' =>'ver'),
+'verM' => array('controller' =>'Controller', 'action' =>'verM'),
+'exit' => array('controller' =>'Controller', 'action' =>'exit'),
 );
 
 // Parseo de la ruta

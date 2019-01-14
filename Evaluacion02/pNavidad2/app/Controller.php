@@ -18,7 +18,7 @@ class Controller
 		//Al crear el objeto, conectamos con la BD con los parámetros de config.php
 		$m = new Model();
 		
-		//Llamamos al método dameAlimentos del modelo y cargaremos los resultados en el array $params
+		//Llamamos al método dameUsuarios del modelo y cargaremos los resultados en el array $params
 		$params = array(
 				'usuarios' => $m->dameUsuarios(),
 		);
@@ -53,17 +53,15 @@ class Controller
 	    if (isset ($_POST['enviar'])) {
 	        $para=recoge('para');
 	        $asunto=recoge('asunto');
-	        $de=recoge('de');
 	        $cuerpo=recoge('cuerpo');
 	        // comprobar campos formulario
-	        if (validarDatos($para, $asunto,$de, $cuerpo)) {
-	            if ($m->insertarMensaje(recoge('para'), recoge('asunto'), recoge('de'), recoge('cuerpo'))){
+	        if (validarDatosM($para, $asunto, $cuerpo)) {
+	            if ($m->insertarMensaje(recoge('para'), recoge('asunto'),recoge('cuerpo'))){
 	                header('Location: index.php?ctl=enviar');
 	            }else {
 	                $params = array(
 	                    'para' => $para,
 	                    'asunto' => $asunto,
-	                    'de' => $de,
 	                    'cuerpo' => $cuerpo,
 	                );
 	                $params['mensaje'] = 'No se ha podido insertar el usuario. Revisa el formulario';
@@ -73,7 +71,6 @@ class Controller
 	                
 	                'para' => $para,
 	                'asunto' => $asunto,
-	                'de' => $de,
 	                'cuerpo' => $cuerpo,
 	            );
 	            $params['mensaje'] = 'Hay datos que no son correctos. Revisa el formulario';
@@ -82,6 +79,77 @@ class Controller
 	    
 	    require __DIR__ . '/templates/enviarMensaje.php';
 	}
+	
+	
+    public function login()
+	{/*
+        session_destroy();
+        unset($_SESSION['id_usuario']);*/
+	    if (isset($_SESSION['id_usuario'])){
+	        $SESION=$_SESSION['id_usuario'];
+	        header("Location: index.php?ctl=ver&id=$SESION");
+	    }
+	    
+	    $params = array(
+	        'nick' => '',
+	        'contrasena' => '',
+	        'resultado' => array(),
+	    );
+	    
+	    $m = new Model();
+	    
+	    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	        $nick=recoge('nick');
+	        $contrasena=recoge('contrasena');
+	      
+	        $params['nick'] = $nick;
+	        $params['contrasena']=$contrasena;
+	        
+	        if(validarInicio($nick, $contrasena)){
+	         
+	            if($params['resultado']=$m->comprueba($nick, $contrasena))
+	                $params['resultado']=$params['resultado'][0]['Id_usuario'][0];
+	                $_SESSION['id_usuario']=$params['resultado'];
+	                $SESION=$_SESSION['id_usuario'];
+	                header("Location: index.php?ctl=ver&id=$SESION");
+	        }else{
+	            $params = array(
+	                'nick' => '',
+	                'contrasena' => '',    
+	            );
+	            $params['mensaje'] = 'No se ha podido iniciar sesión';
+	        }
+	        
+	    }
+	    
+	    require __DIR__ . '/templates/formIniciar.php';    
+	}
+    
+	public function exit(){
+	    require __DIR__ . '/templates/exit.php';
+	}
+	
+	
+	/*
+	 *    if (correo($mail) == 0) {
+        $error = true;
+        echo 'correo erróneo<br>';
+        
+       
+    }
+    
+    if($pwd==$pwd2){
+        if (pwd($pwd) == 0){
+            {
+                $error = true;
+                
+        }
+            
+            
+        }
+    }
+	 */
+	
 
 	public function insertar()
 	{
@@ -89,7 +157,7 @@ class Controller
 				'nick' => '',
 				'nombre' => '',
 				'correo' => '',
-				'contraseña' => '',
+				'contrasena' => '',
 		);
 
 		$m = new Model();
@@ -98,29 +166,38 @@ class Controller
 		    $nick=recoge('nick');
 		    $nombre=recoge('nombre');
 		    $correo=recoge('correo');
-		    $contraseña=recoge('contraseña');
+		    $contrasena=recoge('contrasena');
 			// comprobar campos formulario
-		    if (validarDatos($nick, $nombre,$correo, $contraseña)) {
-		            if ($m->insertarUsuario(recoge('nick'), recoge('nombre'), recoge('correo'), recoge('contraseña'))){
-								header('Location: index.php?ctl=listar');
-						}else {
-							$params = array(
-									'nick' => $nick,
-									'nombre' => $nombre,
-									'correo' => $correo,
-									'contraseña' => $contraseña,
-							);
-							$params['mensaje'] = 'No se ha podido insertar el usuario. Revisa el formulario';
-						}
-					} else {
+		    if ((correo($correo))&&(pwd($contrasena)==true)) {
+		        
+		            if (validarDatos($nick, $nombre,$correo, $contrasena)) {
+		                if ($m->insertarUsuario(recoge('nick'), recoge('nombre'), recoge('correo'), recoge('contrasena'))){
+		                    header('Location: index.php?ctl=listar');
+		                }else {
+		                    $params = array(
+		                        'nick' => $nick,
+		                        'nombre' => $nombre,
+		                        'correo' => $correo,
+		                        'contrasena' => $contrasena,
+		                    );
+		                    $params['mensaje'] = 'No se ha podido insertar el usuario. Revisa el formulario';
+		                }
+		            }
+		            
+		        
+		    
+		        
+		        
+		    }
+		 else {
 						$params = array(
 								
 						    'nick' => $nick,
 						    'nombre' => $nombre,
 						    'correo' => $correo,
-						    'contraseña' => $contraseña,
+						    'contrasena' => $contrasena,
 						);
-						$params['mensaje'] = 'Hay datos que no son correctos. Revisa el formulario';
+						$params['mensaje'] = 'correo o contraseña inválidos.';
 					}
 		}
 

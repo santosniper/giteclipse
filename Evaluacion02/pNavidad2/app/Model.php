@@ -115,6 +115,23 @@ class Model extends PDO
         }
     }
     
+    public function comprueba($nick, $contrasena)
+    {
+        try {
+            $consulta = "select Id_usuario from usuarios where nick like :nick AND contrasena like :contrasena ";
+            
+            $result = $this->conexion->prepare($consulta);
+            $result->bindParam(':nick', $nick);
+            $result->bindParam(':contrasena', $contrasena);
+            $result->execute();
+            return $result->fetchAll();
+            
+        } catch (PDOException $e) {
+            
+            echo "<p>Error: " . $e->getMessage();
+        }
+    }
+    
     public function dameMensaje($id)
     {
         try {
@@ -134,24 +151,24 @@ class Model extends PDO
 
     
     
-    public function insertarUsuario($nick, $nombre, $correo, $contraseña)
+    public function insertarUsuario($nick, $nombre, $correo, $contrasena)
     {
-        $consulta = "insert into usuarios (nick, nombre, correo, contraseña) values (?, ?, ?, ?)";
+        $consulta = "insert into usuarios (nick, nombre, correo, contrasena) values (?, ?, ?, ?)";
         $result = $this->conexion->prepare($consulta);
         $result->bindParam(1, $nick);
         $result->bindParam(2, $nombre);
         $result->bindParam(3, $correo);
-        $result->bindParam(4, $contraseña);
+        $result->bindParam(4, $contrasena);
         $result->execute();
                 
         return $result;
     }
     
-    public function insertarMensaje($para,$asunto,$de, $cuerpo)
+    public function insertarMensaje($para,$asunto,$cuerpo)
     {
         $consulta = "insert into mensajes (emisor,receptor,asunto,mensaje ) values (?, ?, ?, ?)";
         $result = $this->conexion->prepare($consulta);
-        $result->bindParam(1, $de);
+        $result->bindParam(1, $_SESSION['id_usuario']);
         $result->bindParam(2, $para);
         $result->bindParam(3, $asunto);
         $result->bindParam(4, $cuerpo);
